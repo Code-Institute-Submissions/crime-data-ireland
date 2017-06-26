@@ -1,0 +1,1 @@
+web: gunicorn Crime_Data:app

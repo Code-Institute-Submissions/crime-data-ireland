@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="/static/img/favicon.ico" rel="icon" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title> Crime Analysis of Ireland </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="{{ url_for ('static',
+         filename='lib/css/bootstrap.min.css') }}">
+
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet" href="{{ url_for ('static',
+         filename='lib/css/keen-dashboards.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for ('static',
+         filename='lib/css/simple-sidebar.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for ('static',
+         filename='lib/css/dc.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for ('static',
+         filename='css/custom.css') }}">
+</head>
+
+<body>
+<div id="load"></div>
+<div id="contents">
+</div>
+<div id="simon">
+
+<div id="wrapper">
+
+    {#        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">#}
+    {#   <div class="container-fluid">#}
+    {#       <div class="navbar-header">#}
+    {#           <a class="navbar-brand" href="./">Over a Decade of Crime</a>#}
+    {#       </div>#}
+    {#   </div>#}
+    {#</div>#}
+
+    <!-- Sidebar -->
+
+
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <ul id="accordion" role="tablist" aria-multiselectable="true">
+                <li>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingOne">
+                            <h5 class="mb-0">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                   aria-expanded="true"
+                                   aria-controls="collapseOne">
+                                    Overview
+                                </a>
+                            </h5>
+                        </div>
+
+
+                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="card-block">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card">
+
+                        <div class="card-header" role="tab" id="headingTwo">
+                            <h5 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+                                   aria-expanded="false" aria-controls="collapseTwo">
+                                    Provinces
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="card-block">
+                                <ul>
+                                    <li><a href="#">Leinster</a></li>
+                                    <li><a href="#">Munster</a></li>
+                                    <li><a href="#">Connacht</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </li>
+                <li>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingThree">
+                            <h5 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseThree"
+                                   aria-expanded="false" aria-controls="collapseThree">
+                                    Counties </a>
+                            </h5>
+
+                        </div>
+                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="card-block">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </ul>
+    </div>
+
+
+    {# <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">
+                    Crime Analysis of Ireland
+                </a>
+            </li>
+            <li>
+                <a href="#">Overview</a>
+            </li>
+
+
+            <li>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger">Provinces</button>
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Leinster</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Munster</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Connacht</a></li>
+                    </ul>
+                </div>
+
+
+            <li>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger">Counties</button>
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Counties</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">
+                    <form action={{ url_for('index') }} method='POST'>
+
+                    </form>
+                </a>
+            </li>
+        </ul>
+    </div>#}
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div>
+                    <a href="#menu-toggle" class="btn btn-default arrow-left" id="menu-toggle"><span
+                            class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span> Menu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+    <!-- menu select -->
+    <div class="col-bg-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                Select County
+            </div>
+            <div class="chart-stage">
+                <div id="menu-select"></div>
+            </div>
+        </div>
+    </div>
+    <!-- menu select -->
+
+    {#<!-- select year -->
+    <div class="col-bg-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                Select Year
+            </div>
+            <div class="chart-stage">
+                <div id="year-row-chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- select year -->#}
+
+    <!-- attempts -->
+    <div class="col-bg-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                attempts
+            </div>
+            <div class="chart-stage">
+                <div id="attempts-chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- attempts-->
+
+    <!-- Dangerous Acts -->
+    <div class="col-sm-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                Dangerous Acts
+            </div>
+            <div class="chart-stage">
+                <div id="dangerous-chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Dangerous Acts -->
+
+    <!-- robbery -->
+    <div class="col-bg-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                robbery
+            </div>
+            <div class="chart-stage">
+                <div id="robbery_chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- robbery -->
+
+    <!-- weapons -->
+    <div class="col-bg-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                weapons
+            </div>
+            <div class="chart-stage">
+                <div id="weapons_chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- weapons -->
+
+    <!-- Drugs -->
+    <div class="col-bg-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                Drugs
+            </div>
+            <div class="chart-stage">
+                <div id="drug_chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Drugs -->
+
+    <!-- Fraud -->
+    <div class="col-bg-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                Fraud
+            </div>
+            <div class="chart-stage">
+                <div id="fraud_chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Fraud -->
+
+    <!-- Burglary -->
+    <div class="col-bg-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                Burglary
+            </div>
+            <div class="chart-stage">
+                <div id="burglary_chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Burglary -->
+
+    <!-- Government  -->
+    <div class="col-bg-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                Government Offences
+            </div>
+            <div class="chart-stage">
+                <div id="government_chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Government -->
+
+    <!-- Property -->
+    <div class="col-bg-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                Property Damage
+            </div>
+            <div class="chart-stage">
+                <div id="property_chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Property -->
+
+    <!-- Theft -->
+    <div class="col-bg-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                Theft
+            </div>
+            <div class="chart-stage">
+                <div id="theft_chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Theft -->
+
+    <!-- Kidnapping -->
+    <div class="col-bg-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                Kidnapping
+            </div>
+            <div class="chart-stage">
+                <div id="kidnapping_chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Kidnapping -->
+
+    <!-- Public order -->
+    <div class="col-bg-12">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                Public Order
+            </div>
+            <div class="chart-stage">
+                <div id="publicOrder_chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Public order -->
+</div>
+</div>
+<script src="{{ url_for ('static', filename='lib/js/jquery.min.js') }}"></script>
+<script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for ('static', filename='lib/js/crossfilter.js') }}"></script>
+<script src="{{ url_for ('static', filename='lib/js/d3.js') }}"></script>
+<script src="{{ url_for ('static', filename='lib/js/dc.js') }}"></script>
+<script src="{{ url_for ('static', filename='lib/js/queue.js') }}"></script>
+
+<script src="{{ url_for ('static', filename='lib/js/keen.min.js') }}"></script>
+<script src="{{ url_for ('static', filename='js/graph.js') }}"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+
+</body>
+
+</html>
